@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:landmatch/mainscreen/land/add_land.dart';
 
 import '../widgets/my_drawer.dart';
 
@@ -15,6 +16,17 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (builder) => AddLand()));
+        },
+        backgroundColor: Colors.green,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: TextField(
