@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:landmatch/mainscreen/land/view_lands_records.dart';
 
 import '../profilesetting/profile.dart';
 
@@ -44,11 +45,20 @@ class _MyDawerState extends State<MyDawer> {
           ),
           Divider(),
           ListTile(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (builder) => ViewLandRecords()));
+            },
             title: Text("Lands Records"),
             leading: Icon(Icons.landscape),
           ),
           Divider(),
           ListTile(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                      "We cant create its layout because we use builtin packages where layout is already created")));
+            },
             title: Text("Payments"),
             leading: Icon(Icons.payments),
           ),
