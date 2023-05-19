@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import '../profilesetting/profile.dart';
+
 class MyDawer extends StatefulWidget {
   const MyDawer({super.key});
 
@@ -33,6 +35,10 @@ class _MyDawerState extends State<MyDawer> {
             height: 20,
           ),
           ListTile(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (builder) => ProfileSetting()));
+            },
             title: Text("Profile Setting"),
             leading: Icon(Icons.person),
           ),
