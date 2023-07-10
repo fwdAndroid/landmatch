@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:landmatch/auth/forgot_password.dart';
 import 'package:landmatch/auth/register.dart';
 import 'package:landmatch/mainscreen/main_screen.dart';
@@ -24,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Column(
           children: [
             Text(
-              "Land March",
+              "Land Match",
               style: TextStyle(color: Colors.grey, fontSize: 24),
             ),
             Text(
@@ -38,7 +37,18 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Spacer(),
+          SizedBox(
+            height: 40,
+          ),
+          Center(
+            child: Image.asset(
+              "assets/logo.png",
+              height: 200,
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
           Container(
               margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
               child: Text(

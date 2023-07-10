@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:landmatch/chat/chat_page.dart';
 import 'package:landmatch/mainscreen/land/view_lands_records.dart';
 import 'package:landmatch/notifications/notifications.dart';
 
@@ -43,6 +44,15 @@ class _MyDawerState extends State<MyDawer> {
             },
             title: Text("Profile Setting"),
             leading: Icon(Icons.person),
+          ),
+          Divider(),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => ChatPage()));
+            },
+            title: Text("Chat"),
+            leading: Icon(Icons.chat_outlined),
           ),
           Divider(),
           ListTile(

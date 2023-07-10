@@ -38,18 +38,61 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: Colors.white,
       ),
       drawer: MyDawer(),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/map.png"),
+      body: InkWell(
+        onTap: alert,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/map.png"),
+            ),
+          ),
+          child: Column(
+            children: [],
           ),
         ),
-        child: Column(
-          children: [],
-        ),
       ),
+    );
+  }
+
+  void alert() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Important',
+            style: TextStyle(color: Colors.red),
+          ),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'Move the pin to the centre of the parcel of land',
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text('Confrim'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => MainScreen()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

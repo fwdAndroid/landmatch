@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:landmatch/mainscreen/land/post_code.dart';
 import 'package:landmatch/mainscreen/main_screen.dart';
 
 class AddLand extends StatefulWidget {
@@ -18,7 +19,7 @@ class _AddLandState extends State<AddLand> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Add LandMark",
+          "Enter the land data",
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -31,7 +32,7 @@ class _AddLandState extends State<AddLand> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                margin: EdgeInsets.only(left: 10, right: 10, top: 15),
+                margin: EdgeInsets.only(left: 10, right: 10, top: 10),
                 child: Text(
                   "Size of plot in acres",
                 )),
@@ -263,10 +264,7 @@ class _AddLandState extends State<AddLand> {
                     fixedSize: Size(336, 45),
                     backgroundColor: Color(0xff56AE6F),
                   ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => MainScreen()));
-                  },
+                  onPressed: alert,
                   child: Text(
                     "Confrim",
                     style: TextStyle(
@@ -279,6 +277,46 @@ class _AddLandState extends State<AddLand> {
           ],
         ),
       ),
+    );
+  }
+
+  void alert() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Important',
+            style: TextStyle(color: Colors.red),
+          ),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'You are about to post land to registered Renewable Power Developers. Is all the information you have supplied true and accurate and ready to be posted? Your contact details will be hidden',
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text('Sure'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => PostCode()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:landmatch/auth/login.dart';
 
 class Register extends StatefulWidget {
@@ -22,7 +21,7 @@ class _RegisterState extends State<Register> {
         title: Column(
           children: [
             Text(
-              "Land March",
+              "Land Match",
               style: TextStyle(color: Colors.grey, fontSize: 24),
             ),
             Text(
@@ -32,12 +31,42 @@ class _RegisterState extends State<Register> {
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
         children: [
+          Center(
+            child: Image.asset(
+              "assets/logo.png",
+              height: 200,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Container(
-              margin: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 50),
+              margin: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 30),
+              child: Text(
+                "Name",
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Enter Name",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 1, color: Color(0xffEBEBEB)), //<-- SEE HERE
+                  ),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 1, color: Color(0xffEBEBEB)), //<-- SEE HERE
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Color(0xffEBEBEB)),
+                  ),
+                ),
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 20),
               child: Text(
                 "Email",
               )),
@@ -151,6 +180,9 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
               )),
+          SizedBox(
+            height: 20,
+          ),
           Spacer(),
           Center(
             child: ElevatedButton(
@@ -158,7 +190,7 @@ class _RegisterState extends State<Register> {
                 fixedSize: Size(336, 45),
                 backgroundColor: Color(0xff56AE6F),
               ),
-              onPressed: () {},
+              onPressed: alert,
               child: Text(
                 "Register",
                 style: TextStyle(
@@ -190,6 +222,50 @@ class _RegisterState extends State<Register> {
           ),
         ],
       ),
+    );
+  }
+
+  void alert() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Declaration',
+            style: TextStyle(color: Colors.red),
+          ),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'The land being listed is my own or I have the legal authority to act as the agent for the Land Owner',
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text(
+                'Accept',
+                style: TextStyle(color: Colors.green),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => LoginPage()));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
